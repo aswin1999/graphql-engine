@@ -220,9 +220,14 @@ const graphQLFetcherFinal = (graphQLParams, url, headers) => {
   if (isSubscription(graphQLParams)) {
     return graphqlSubscriber(graphQLParams, url, headers);
   }
+  console.log(getHeadersAsJSON(headers));
+  const reqHeaders = getHeadersAsJSON(headers);
+  // reqHeaders['charset'] = 'utf-8';
+  // reqHeaders['Accept-Charset'] = 'utf-8';
+  console.log(reqHeaders);
   return fetch(url, {
     method: 'POST',
-    headers: getHeadersAsJSON(headers),
+    headers: reqHeaders,
     body: JSON.stringify(graphQLParams),
   }).then(response => response.json());
 };

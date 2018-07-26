@@ -4,7 +4,7 @@ const getHeadersAsJSON = headers => {
     return (header.key || header.value) && header.isActive;
   });
   nonEmptyHeaders.forEach(header => {
-    headerJSON[header.key] = header.value;
+    headerJSON[header.key] = encodeURI(header.value);
   });
   return headerJSON;
 };
